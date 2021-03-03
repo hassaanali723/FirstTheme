@@ -29,7 +29,7 @@
 
 
 <?php } else { ?>
-    <p>Sorry, No posts were found</p>
+    <p><?php esc_html_e("Sorry, No posts were found","firsttheme"); //for translation ?></p> 
 <?php } ?>
 
 <?php get_footer(); ?>
