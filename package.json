@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"gulp",
+    "build":"gulp build --prod"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@babel/core": "^7.13.8",
     "@babel/preset-env": "^7.13.9",
     "@babel/register": "^7.13.8",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-if": "^3.0.0",

@@ -7,6 +7,7 @@ import cleanCSS from 'gulp-clean-css';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
+import del from 'del';
 const PRODUCTION = yargs.argv.prod;
 
 // export const hello = (done) => {
@@ -51,9 +52,13 @@ export const images = () =>{
   .pipe(gulp.dest(path.images.dest));
 }
 
+export const clean = () => del(['dist']);
 
 export const watch=() =>{
-  gulp.watch('src/assets/scss/**/*.scss',styles)
+  gulp.watch('src/assets/scss/**/*.scss',styles);
+  gulp.watch(path.images.src,images)
+  gulp.watch(path.others.src,copy)
+
 }
 
 export const copy = () =>{
@@ -61,4 +66,7 @@ export const copy = () =>{
   .pipe(gulp.dest(path.others.dest))
 }
 
-  // exports.default = hello;
+export const dev = gulp.series(clean, gulp.parallel(styles,images,copy),watch);
+export const build = gulp.series(clean, gulp.parallel(styles,images,copy));
+
+  exports.default = dev;
